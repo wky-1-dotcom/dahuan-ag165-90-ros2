@@ -28,6 +28,10 @@ Gazebo then adds the two SDF-only `link2 ↔ link3` pin joints to restore the ph
 
 ![AG165-90 SDF closed-loop configuration](assets/images/ag165-90-sdf-closure.png)
 
+## Demonstration
+
+[观看抓取演示视频（MP4）](assets/videos/grasp.mp4)。该视频用于展示当前仿真/演示结果，不替代闭环物理抓取、碰撞或真机验收。
+
 ## Important model boundary
 
 URDF/MoveIt use a tree: only `ag165_joint1_left` receives ROS 2 position commands. Gazebo closes each finger's four-bar linkage using SDF pin joints, while a PD mimic plugin drives `ag165_joint1_right`. Do not command the five passive AG165 joints or add the SDF closure pins to a MoveIt planning group.
