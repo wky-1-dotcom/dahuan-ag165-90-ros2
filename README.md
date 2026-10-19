@@ -1,5 +1,9 @@
 # DH Robotics AG165-90 — ROS 2 / Gazebo SDF Closed Loop
 
+**参考来源：** [DH-Robotics/dh_gripper_ros](https://github.com/DH-Robotics/dh_gripper_ros)（大寰官方 ROS 夹爪仓库）。本项目基于大寰夹爪的 ROS 建模与接口资料，针对 **AG165-90** 完成模型整理、URDF 树状建模和 Gazebo SDF 物理闭环扩展。官方公开仓库当前未提供 AG165-90 的专用包；本仓库中的 AG165-90 配置为独立整理与验证结果。
+
+![AG165-90 夹爪整体模型](assets/images/ag165-90-overview.png)
+
 This repository packages the CR7AS-mounted DH Robotics AG165-90 gripper assets used for ROS 2 Humble and Gazebo Classic development. It preserves the source CAD assembly, ROS 2 robot-description and MoveIt configuration packages, and the validated SDF closed-loop reference.
 
 ## Contents
@@ -9,9 +13,20 @@ CAD/SolidWorks/CR7AS+AG165-90/        Original SolidWorks parts and assemblies
 ROS2/src/cr7as_grasp/                 URDF/Xacro, AG165 meshes, SDF model, plugins and controllers
 ROS2/src/cr7as_grasp_moveit_config/   MoveIt 2 configuration for the CR7AS + AG165 integration
 docs/                                 Closed-loop architecture, validation and migration notes
+assets/images/                         README illustrations
 ```
 
 The independent Gazebo model is at `ROS2/src/cr7as_grasp/models/ag165_90_4/model.sdf`. The six-link tree used by ROS/MoveIt is defined in `ROS2/src/cr7as_grasp/urdf/ag165_macro.xacro`; the Gazebo-only SDF pins close the four-bar linkage at simulation time.
+
+## URDF tree and SDF closed-loop model
+
+Each side of the AG165-90 is a four-bar linkage. ROS/MoveIt requires a tree, so the URDF retains six tree joints and models only the parent-child structure used by TF, planning and `ros2_control`.
+
+![AG165-90 simplified as a URDF tree](assets/images/ag165-90-urdf-simplification.png)
+
+Gazebo then adds the two SDF-only `link2 ↔ link3` pin joints to restore the physical closed loop. The right active joint follows the left active joint through a PD mimic plugin; the passive joints remain state-only.
+
+![AG165-90 SDF closed-loop configuration](assets/images/ag165-90-sdf-closure.png)
 
 ## Important model boundary
 
