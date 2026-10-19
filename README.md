@@ -1,6 +1,6 @@
 # DH Robotics AG165-90 — ROS 2 / Gazebo SDF Closed Loop
 
-**参考来源：** [DH-Robotics/dh_gripper_ros](https://github.com/DH-Robotics/dh_gripper_ros)（大寰官方 ROS 夹爪仓库）。本项目基于大寰夹爪的 ROS 建模与接口资料，针对 **AG165-90** 完成模型整理、URDF 树状建模和 Gazebo SDF 物理闭环扩展。官方公开仓库当前未提供 AG165-90 的专用包；本仓库中的 AG165-90 配置为独立整理与验证结果。
+**上游参考：** [DH-Robotics/dh_gripper_ros](https://github.com/DH-Robotics/dh_gripper_ros) 是大寰 GitHub 组织当前公开的官方夹爪 ROS 仓库。它提供的是 ROS 1 元包，并包含 AG95、AG145 等型号；官方组织当前没有公开 AG165-90 专用包，也没有可确认的官方 ROS 2 更新版。第三方 ROS 2 移植不应标注为官方。本项目基于大寰夹爪的公开建模/接口资料，针对 **AG165-90** 独立完成模型整理、URDF 树状建模和 Gazebo SDF 物理闭环扩展；详情见 [官方上游参考](docs/官方上游参考.md)。
 
 ![AG165-90 夹爪整体模型](assets/images/ag165-90-overview.png)
 
