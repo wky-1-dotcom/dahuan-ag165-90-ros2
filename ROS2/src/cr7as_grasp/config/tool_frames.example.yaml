@@ -1,0 +1,22 @@
+# Template only. Copy to tool_frames.yaml after measurement and controller verification.
+tool_frames:
+  flange_frame: l6
+  gripper_base_frame: gripper_base
+  tcp_frame: grasp_tcp
+
+  flange_to_grasp_tcp:
+    verified: false
+    xyz_m: [null, null, null]
+    xyzw: [null, null, null, null]
+
+  vendor_controller_tool:
+    tool_id: null
+    matches_ros_grasp_tcp: false
+
+  gripper_io:
+    interface: unverified  # candidate values after confirmation: tool_do, tool_485, external_io
+    open_channel: null
+    close_channel: null
+    open_level: null
+    close_level: null
+    safe_state: null

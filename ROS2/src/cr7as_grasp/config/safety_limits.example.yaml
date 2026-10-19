@@ -1,0 +1,23 @@
+# Template only. Copy to safety_limits.yaml after workspace and payload verification.
+safety:
+  execution_enabled: false
+  velocity_scaling_max: 0.05
+  acceleration_scaling_max: 0.05
+  require_controller_inverse_kinematics: true
+  require_check_odd_movj: true
+  require_check_odd_movl: true
+  require_operator_confirmation: true
+
+workspace:
+  # Fill only after site measurement and collision-scene validation.
+  x_m: [null, null]
+  y_m: [null, null]
+  z_m: [null, null]
+
+table:
+  plane_z_m: null
+  collision_clearance_m: 0.03
+
+motion:
+  minimum_pregrasp_distance_m: 0.10
+  minimum_lift_distance_m: 0.12

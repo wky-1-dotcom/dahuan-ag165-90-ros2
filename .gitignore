@@ -1,0 +1,14 @@
+# ROS 2 generated workspace output
+build/
+install/
+log/
+
+# Python and editor caches
+**/__pycache__/
+**/*.py[cod]
+.vscode/
+.idea/
+
+# Local ROS/Gazebo state
+.ros/
+.gazebo/

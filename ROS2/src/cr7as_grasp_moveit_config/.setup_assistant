@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: cr7as_grasp_moveit_config
+    relative_path: config/cr7as_grasp.urdf.xacro
+  srdf:
+    relative_path: config/cr7as_grasp.srdf
+  package_settings:
+    author_name: lxq
+    author_email: 15936921691@163.com
+    generated_timestamp: 1789725934
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

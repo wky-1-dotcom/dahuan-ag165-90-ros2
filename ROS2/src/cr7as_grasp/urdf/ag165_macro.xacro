@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<!--
+  AG165-90 four-bar gripper, reconstructed from:
+  H:\Desktop\AG165-90_4\ros2_humble\sdf\ag165_90_4_full_gripper.sdf
+
+  URDF provides the acyclic ROS / MoveIt tree. Gazebo Classic converts this
+  to SDF and receives the two final pin joints from the gazebo extensions,
+  closing the four-bar loops in the physics model.
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="dh_ag165_gripper"
+    params="prefix parent use_sdf_closure:=true
+            sdf_left_pose_xyz:=&quot;0.022 0 0&quot;
+            sdf_left_pose_rpy:=&quot;0 0 0&quot;
+            sdf_right_pose_xyz:=&quot;0.022 0 0&quot;
+            sdf_right_pose_rpy:=&quot;0 0 0&quot;
+            sdf_left_axis:=&quot;0 0 1&quot;
+            sdf_right_axis:=&quot;0 0 1&quot;
+            sdf_left_enabled:=true sdf_right_enabled:=true
+            ag165_soft_mimic_test:=true
+            *origin">
+
+    <xacro:property name="soft_test" value="${str(ag165_soft_mimic_test).lower() == 'true'}"/>
+
+    <!-- All CAD mesh coordinates are local to their corresponding link. -->
+    <link name="${prefix}ag165_base_link">
+      <inertial>
+        <origin xyz="2.0189e-05 7.6313e-06 0.052977" rpy="0 0 0"/>
+        <mass value="0.82"/>
+        <inertia ixx="0.00116" ixy="3.58e-07" ixz="3.79e-07"
+                 iyy="0.00135" iyz="4.27e-08" izz="0.00050"/>
+      </inertial>
+      <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/base_link.STL"/></geometry></visual>
+      <collision><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/base_link.STL"/></geometry></collision>
+    </link>
+
+    <link name="${prefix}ag165_link1_left">
+      <inertial>
+        <origin xyz="0.027954 1.3585e-10 -1.1466e-08" rpy="0 0 0"/>
+        <mass value="0.055"/>
+        <inertia ixx="1.07e-06" ixy="3.51e-13" ixz="-1.09e-11"
+                 iyy="1.69e-05" iyz="-2.98e-14" izz="1.68e-05"/>
+      </inertial>
+      <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link1_left.STL"/></geometry></visual>
+      <collision><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link1_left.STL"/></geometry></collision>
+    </link>
+    <!-- Exact SDF joint pose at q=0. This replaces the incorrect SW-exported frame. -->
+    <joint name="${prefix}ag165_joint1_left" type="revolute">
+      <origin xyz="0.036673 -0.00011644 0.098336" rpy="-1.5708 -0.86932 -0.0031749"/>
+      <parent link="${prefix}ag165_base_link"/><child link="${prefix}ag165_link1_left"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-0.05" upper="0.93" effort="50" velocity="2.1"/>
+      <dynamics damping="0.08" friction="0.01"/>
+    </joint>
+
+    <link name="${prefix}ag165_link2_left">
+      <inertial>
+        <origin xyz="0.023452 -0.010342 0.00034961" rpy="0 0 0"/>
+        <mass value="0.050"/>
+        <inertia ixx="4.15e-06" ixy="7.75e-07" ixz="9.63e-11"
+                 iyy="4.11e-06" iyz="-3.72e-09" izz="4.12e-06"/>
+      </inertial>
+      <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link2_left.STL"/></geometry></visual>
+      <collision><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link2_left.STL"/></geometry></collision>
+    </link>
+    <joint name="${prefix}ag165_joint2_left" type="revolute">
+      <origin xyz="0.055 0 0" rpy="-3.1405 0 -1.9232"/>
+      <parent link="${prefix}ag165_link1_left"/><child link="${prefix}ag165_link2_left"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-3.14" upper="3.14" effort="50" velocity="2.1"/>
+      <dynamics damping="0.0005" friction="0.0"/>
+    </joint>
+
+    <link name="${prefix}ag165_link3_left">
+      <inertial>
+        <origin xyz="0.022966 -0.0014068 3.386e-06" rpy="0 0 0"/>
+        <mass value="0.060"/>
+        <inertia ixx="1.68e-05" ixy="5.82e-07" ixz="-1.40e-09"
+                 iyy="3.58e-05" iyz="-3.83e-08" izz="1.99e-05"/>
+      </inertial>
+      <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link3_left.STL"/></geometry></visual>
+      <collision><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link3_left.STL"/></geometry></collision>
+    </link>
+    <joint name="${prefix}ag165_joint3_left" type="revolute">
+      <origin xyz="0.016 -5.0799e-05 0.10586" rpy="-1.5684 -0.86023 -0.0031749"/>
+      <parent link="${prefix}ag165_base_link"/><child link="${prefix}ag165_link3_left"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-3.14" upper="3.14" effort="50" velocity="2.1"/>
+      <dynamics damping="0.0005" friction="0.0"/>
+    </joint>
+
+    <link name="${prefix}ag165_link1_right">
+      <inertial>
+        <origin xyz="0.027954 1.3585e-10 -1.1466e-08" rpy="0 0 0"/>
+        <mass value="0.055"/>
+        <inertia ixx="1.07e-06" ixy="3.51e-13" ixz="-1.09e-11"
+                 iyy="1.69e-05" iyz="-2.98e-14" izz="1.68e-05"/>
+      </inertial>
+      <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link1_right.STL"/></geometry></visual>
+      <collision><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link1_right.STL"/></geometry></collision>
+    </link>
+    <!-- This is physically driven by libag165_gripper_mimic_plugin.so, not URDF mimic. -->
+    <joint name="${prefix}ag165_joint1_right" type="revolute">
+      <origin xyz="-0.036673 0.00011644 0.098336" rpy="-1.5684 -0.84513 3.1384"/>
+      <parent link="${prefix}ag165_base_link"/><child link="${prefix}ag165_link1_right"/>
+      <axis xyz="0 0 -1"/>
+      <!-- Both profiles keep the reference joint range; soft profile adjusts damping only. -->
+      <limit lower="-0.05" upper="0.93" effort="50" velocity="2.1"/>
+      <dynamics damping="${0.15 if soft_test else 0.20}" friction="0.01"/>
+    </joint>
+
+    <link name="${prefix}ag165_link2_right">
+      <inertial>
+        <origin xyz="0.023452 -0.010342 0.00034961" rpy="0 0 0"/>
+        <mass value="0.050"/>
+        <inertia ixx="4.15e-06" ixy="7.75e-07" ixz="9.63e-11"
+                 iyy="4.11e-06" iyz="-3.72e-09" izz="4.12e-06"/>
+      </inertial>
+      <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link2_right.STL"/></geometry></visual>
+      <collision><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link2_right.STL"/></geometry></collision>
+    </link>
+    <joint name="${prefix}ag165_joint2_right" type="revolute">
+      <origin xyz="0.055 0 0" rpy="-3.1396 -0.0022086 -1.9474"/>
+      <parent link="${prefix}ag165_link1_right"/><child link="${prefix}ag165_link2_right"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-3.14" upper="3.14" effort="50" velocity="2.1"/>
+      <dynamics damping="0.0005" friction="0.0"/>
+    </joint>
+
+    <link name="${prefix}ag165_link3_right">
+      <inertial>
+        <origin xyz="0.022966 -0.0014068 3.386e-06" rpy="0 0 0"/>
+        <mass value="0.060"/>
+        <inertia ixx="1.68e-05" ixy="5.82e-07" ixz="-1.40e-09"
+                 iyy="3.58e-05" iyz="-3.83e-08" izz="1.99e-05"/>
+      </inertial>
+      <visual><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link3_right.STL"/></geometry></visual>
+      <collision><origin xyz="0 0 0" rpy="0 0 0"/><geometry><mesh filename="package://cr7as_grasp/meshes/ag165/link3_right.STL"/></geometry></collision>
+    </link>
+    <joint name="${prefix}ag165_joint3_right" type="revolute">
+      <origin xyz="-0.016 5.0799e-05 0.10586" rpy="-1.5708 -0.83604 3.1384"/>
+      <parent link="${prefix}ag165_base_link"/><child link="${prefix}ag165_link3_right"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-3.14" upper="3.14" effort="50" velocity="2.1"/>
+      <dynamics damping="0.0005" friction="0.0"/>
+    </joint>
+
+    <joint name="${prefix}ag165_mount_joint" type="fixed">
+      <parent link="${parent}"/><child link="${prefix}ag165_base_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <!-- Match the successful SDF: gripper links are not gravity-driven. -->
+    <gazebo reference="${prefix}ag165_base_link"><gravity>false</gravity><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+    <gazebo reference="${prefix}ag165_link1_left"><gravity>false</gravity><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+    <gazebo reference="${prefix}ag165_link2_left">
+      <gravity>false</gravity><mu1>0.8</mu1><mu2>0.8</mu2><kp>100000.0</kp><kd>100.0</kd><maxVel>0.02</maxVel><minDepth>0.001</minDepth>
+      <!-- Diagnostic only: this collision is the entire link2 STL, not an isolated pad. -->
+      <sensor name="${prefix}ag165_left_contact_sensor" type="contact">
+        <always_on>true</always_on><update_rate>50</update_rate>
+        <contact><collision>${prefix}ag165_link2_left_collision</collision></contact>
+        <plugin name="${prefix}ag165_left_bumper" filename="libgazebo_ros_bumper.so">
+          <ros><remapping>bumper_states:=/ag165/contact_left_raw</remapping></ros>
+          <frame_name>world</frame_name>
+        </plugin>
+      </sensor>
+    </gazebo>
+    <gazebo reference="${prefix}ag165_link3_left"><gravity>false</gravity><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+    <gazebo reference="${prefix}ag165_link1_right"><gravity>false</gravity><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+    <gazebo reference="${prefix}ag165_link2_right">
+      <gravity>false</gravity><mu1>0.8</mu1><mu2>0.8</mu2><kp>100000.0</kp><kd>100.0</kd><maxVel>0.02</maxVel><minDepth>0.001</minDepth>
+      <sensor name="${prefix}ag165_right_contact_sensor" type="contact">
+        <always_on>true</always_on><update_rate>50</update_rate>
+        <contact><collision>${prefix}ag165_link2_right_collision</collision></contact>
+        <plugin name="${prefix}ag165_right_bumper" filename="libgazebo_ros_bumper.so">
+          <ros><remapping>bumper_states:=/ag165/contact_right_raw</remapping></ros>
+          <frame_name>world</frame_name>
+        </plugin>
+      </sensor>
+    </gazebo>
+    <gazebo reference="${prefix}ag165_link3_right"><gravity>false</gravity><mu1>0.8</mu1><mu2>0.8</mu2></gazebo>
+
+    <!-- Gazebo Classic appends these SDF joints after converting the URDF tree. -->
+    <xacro:if value="${use_sdf_closure}">
+      <xacro:if value="${sdf_left_enabled}">
+        <gazebo>
+          <joint name="${prefix}ag165_left_link2_to_link3_sdf" type="revolute">
+            <!-- Match the reference SDF: this pin pose is in link2, not the
+                 SDF default child-link (link3) frame. -->
+            <pose relative_to="${prefix}ag165_link2_left">${sdf_left_pose_xyz} ${sdf_left_pose_rpy}</pose>
+            <parent>${prefix}ag165_link2_left</parent><child>${prefix}ag165_link3_left</child>
+            <axis><xyz>${sdf_left_axis}</xyz><use_parent_model_frame>false</use_parent_model_frame>
+              <limit><lower>-3.14</lower><upper>3.14</upper><effort>50</effort><velocity>2.1</velocity></limit>
+              <dynamics><damping>0.0</damping><friction>0.0</friction></dynamics>
+            </axis>
+            <physics><ode><cfm>1e-4</cfm><erp>0.2</erp></ode></physics>
+          </joint>
+        </gazebo>
+      </xacro:if>
+      <xacro:if value="${sdf_right_enabled}">
+        <gazebo>
+          <joint name="${prefix}ag165_right_link2_to_link3_sdf" type="revolute">
+            <pose relative_to="${prefix}ag165_link2_right">${sdf_right_pose_xyz} ${sdf_right_pose_rpy}</pose>
+            <parent>${prefix}ag165_link2_right</parent><child>${prefix}ag165_link3_right</child>
+            <axis><xyz>${sdf_right_axis}</xyz><use_parent_model_frame>false</use_parent_model_frame>
+              <limit><lower>-3.14</lower><upper>3.14</upper><effort>50</effort><velocity>2.1</velocity></limit>
+              <dynamics><damping>0.0</damping><friction>0.0</friction></dynamics>
+            </axis>
+            <physics><ode><cfm>1e-3</cfm><erp>0.2</erp></ode></physics>
+          </joint>
+        </gazebo>
+      </xacro:if>
+    </xacro:if>
+
+    <!-- Match the verified standalone SDF model: internal links do not collide
+         with one another and auto-disable is off during the closure solve. -->
+    <gazebo><self_collide>false</self_collide><allow_auto_disable>false</allow_auto_disable></gazebo>
+
+    <!-- The soft profile retains damping and lower effort but uses +1 follower sign. -->
+    <xacro:if value="${soft_test}">
+      <gazebo reference="${prefix}ag165_joint1_left">
+        <implicitSpringDamper>true</implicitSpringDamper>
+      </gazebo>
+      <gazebo reference="${prefix}ag165_joint1_right">
+        <implicitSpringDamper>true</implicitSpringDamper>
+      </gazebo>
+    </xacro:if>
+    <gazebo>
+      <plugin name="${prefix}ag165_gripper_mimic" filename="libag165_gripper_mimic_plugin.so">
+        <enabled>true</enabled>
+        <active_joint>${prefix}ag165_joint1_left</active_joint>
+        <kp>${2.0 if soft_test else 2.5}</kp>
+        <kd>${0.35 if soft_test else 0.35}</kd>
+        <effort>${2.0 if soft_test else 2.5}</effort>
+        <follower>
+          <name>${prefix}ag165_joint1_right</name>
+          <multiplier>1.0</multiplier>
+          <xacro:if value="${soft_test}"><offset>0.0</offset></xacro:if>
+        </follower>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+</robot>
+

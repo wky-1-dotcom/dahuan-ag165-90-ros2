@@ -1,0 +1,544 @@
+
+<robot
+  name="cr7as_grasp">
+
+  <link
+    name="base_link" />
+  <joint
+    name="base_link_to_b0"
+    type="fixed">
+    <parent
+      link="base_link" />
+    <child
+      link="b0" />
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+  </joint>
+  <link
+    name="b0">
+    <inertial>
+      <origin
+        xyz="4.1733020741553E-06 -0.002126922884313 0.0289949925386515"
+        rpy="0 0 0" />
+      <mass
+        value="2.45374588609225" />
+      <inertia
+        ixx="0.00392703244780681"
+        ixy="1.10752110012053E-07"
+        ixz="4.92142898534919E-07"
+        iyy="0.00363144728266762"
+        iyz="1.6867983087399E-05"
+        izz="0.00581838177998014" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/b0.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/b0.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="l1">
+    <inertial>
+      <origin
+        xyz="2.21022811578916E-07 0.00610392350058842 0.0553627609915618"
+        rpy="0 0 0" />
+      <mass
+        value="3.64256244995983" />
+      <inertia
+        ixx="0.00718544646848563"
+        ixy="-5.94590259976803E-09"
+        ixz="-6.49848358421596E-08"
+        iyy="0.00685903542408445"
+        iyz="-0.00105850868467331"
+        izz="0.00773256149480232" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j1"
+    type="revolute">
+    <origin
+      xyz="0 -0.00021637 0.0713"
+      rpy="0 0 0" />
+    <parent
+      link="b0" />
+    <child
+      link="l1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l2">
+    <inertial>
+      <origin
+        xyz="-4.59525204225125E-08 0.187062461056386 -0.0580208770122968"
+        rpy="0 0 0" />
+      <mass
+        value="8.24352301424243" />
+      <inertia
+        ixx="0.0207959469868873"
+        ixy="-1.78445779193282E-09"
+        ixz="-4.18367837107528E-09"
+        iyy="0.0160569655746898"
+        iyz="-1.08573686034019E-08"
+        izz="0.0219167054397757" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j2"
+    type="revolute">
+    <origin
+      xyz="0 0.0713 0.0757"
+      rpy="1.5708 0 0" />
+    <parent
+      link="l1" />
+    <child
+      link="l2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l3">
+    <inertial>
+      <origin
+        xyz="-0.000337460866465772 -0.106336802654266 -0.0460199009713598"
+        rpy="0 0 0" />
+      <mass
+        value="5.13652290759205" />
+      <inertia
+        ixx="0.00954935006338865"
+        ixy="-6.93965092920155E-06"
+        ixz="8.82889493914528E-07"
+        iyy="0.00736445133477723"
+        iyz="0.000288366161931673"
+        izz="0.0101629864594874" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j3"
+    type="revolute">
+    <origin
+      xyz="0 0.377 0"
+      rpy="3.1416 0 0" />
+    <parent
+      link="l2" />
+    <child
+      link="l3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l4">
+    <inertial>
+      <origin
+        xyz="-5.09702892927746E-05 -0.015987234531551 0.0457383219998134"
+        rpy="0 0 0" />
+      <mass
+        value="1.43706281861316" />
+      <inertia
+        ixx="0.00158497624845016"
+        ixy="-4.0895057363129E-07"
+        ixz="7.95557406713954E-07"
+        iyy="0.00145962690488598"
+        iyz="0.000253745898202275"
+        izz="0.00152513961157611" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j4"
+    type="revolute">
+    <origin
+      xyz="-0.00097471 -0.307 0.0202"
+      rpy="0 0 0" />
+    <parent
+      link="l3" />
+    <child
+      link="l4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l5">
+    <inertial>
+      <origin
+        xyz="-0.000172779473618793 0.0121518239356777 0.0459431419716085"
+        rpy="0 0 0" />
+      <mass
+        value="1.49205328417377" />
+      <inertia
+        ixx="0.00164391582844453"
+        ixy="5.81350796777135E-07"
+        ixz="1.08059837178037E-08"
+        iyy="0.00151560882567263"
+        iyz="-0.00026188459882741"
+        izz="0.00158193041136793" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j5"
+    type="revolute">
+    <origin
+      xyz="-0.00021113 -0.0665 0.0495"
+      rpy="1.5708 0 0" />
+    <parent
+      link="l4" />
+    <child
+      link="l5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l6">
+    <inertial>
+      <origin
+        xyz="-9.7556E-07 -0.00030731 -0.019273"
+        rpy="0 0 0" />
+      <mass
+        value="0.43046" />
+      <inertia
+        ixx="0.00021084"
+        ixy="9.4311E-09"
+        ixz="-1.1842E-09"
+        iyy="0.00021381"
+        iyz="-3.7319E-07"
+        izz="0.00034979" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/l6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="j6"
+    type="revolute">
+    <origin
+      xyz="-0.00015716 0.105 0.0495"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="l5" />
+    <child
+      link="l6" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="gripper_base">
+    <inertial>
+      <origin
+        xyz="-1.5141E-05 1.3497E-05 0.070148"
+        rpy="0 0 0" />
+      <mass
+        value="2.0" />
+      <inertia
+        ixx="0.0022689731" ixy="5.6958480e-7" ixz="-6.9587040e-7" iyy="0.0025983105" iyz="-7.8348159e-8" izz="0.0010086715" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/gripper_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cr7as_grasp/meshes/gripper_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="gripper_base_j"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l6" />
+    <child
+      link="gripper_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+    <link
+    name="grasp_tcp">
+    <!-- TCP is a reference frame for grasp planning, not a physical body. -->
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.05" />
+      <inertia
+        ixx="0.00001"
+        ixy="0"
+        ixz="0"
+        iyy="0.00001"
+        iyz="0"
+        izz="0.00001" />
+    </inertial>
+  </link>
+  <joint
+    name="grasp_tcp_j"
+    type="fixed">
+    <origin
+      xyz="0 0.00071813 0.18132"
+      rpy="0 0 0" />
+    <parent
+      link="gripper_base" />
+    <child
+      link="grasp_tcp" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+    <!-- ================= 虚拟相机 ================= -->
+
+  <!-- 虚拟相机本体，仅用于仿真显示和坐标系发布 -->
+  <link name="virtual_camera_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia
+        ixx="0.000001"
+        ixy="0"
+        ixz="0"
+        iyy="0.000001"
+        iyz="0"
+        izz="0.000001"/>
+    </inertial>
+
+    <!-- 在 RViz 中显示一个小盒子，代表相机外壳 -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.08 0.05 0.04"/>
+      </geometry>
+      <material name="virtual_camera_material">
+        <color rgba="0.1 0.1 0.8 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <!--
+    暂时将相机固定在 base_link 上。
+    xyz 是相机相对于 base_link 的位置：
+    x = 0.00 m
+    y = 0.50 m
+    z = 1.20 m
+
+    rpy="0 1.5708 0" 让相机初步朝向桌面。
+  -->
+  <joint name="base_to_virtual_camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="virtual_camera_link"/>
+    <origin
+      xyz="0.0 0.50 1.20"
+      rpy="0 1.5708 0"/>
+  </joint>
+
+  <!-- ROS 相机标准光学坐标系 -->
+  <link name="virtual_camera_optical_frame"/>
+
+  <joint name="virtual_camera_optical_joint" type="fixed">
+    <parent link="virtual_camera_link"/>
+    <child link="virtual_camera_optical_frame"/>
+    <origin
+      xyz="0 0 0"
+      rpy="-1.5708 0 -1.5708"/>
+  </joint>
+
+  <!-- ================= 虚拟相机结束 ================= -->
+</robot>
+
+

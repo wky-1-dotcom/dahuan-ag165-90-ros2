@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <!--
+    AG165-90 Full Gripper SDF (Sim-to-Real Optimized for Gazebo Physics).
+    
+    [MASS CONFIGURATION NOTE]:
+    1. Base Link: Scaled from 0.34 kg to 0.82 kg to represent the real physical gripper
+       internals (motor, reduction gearbox, control electronics, and outer casting).
+    2. Finger Links (link1, link2, link3): Originally ~0.018 kg in CAD. Scaled to
+       0.05~0.06 kg with proportional inertia scaling. This eliminates ODE/LCP numerical
+       instabilities, high-frequency oscillations, and contact explosive failures
+       when grasping workpieces, while keeping CAD geometry and visual meshes 100% true to 1:1 scale.
+    3. Total Gripper Mass: ~1.15 kg, well aligned with the official ~1.0 kg factory spec.
+  -->
+  <model name="ag165_90_4_full_gripper">
+    <pose>0 0 0 0 0 0</pose>
+    <static>false</static>
+    <self_collide>false</self_collide>
+    <allow_auto_disable>false</allow_auto_disable>
+
+    <!-- Base Link (Houses Motor and Core Electronics) -->
+    <link name="base_link">
+      <pose>0 0 0 0 0 0</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <pose>2.0189e-05 7.6313e-06 0.052977 0 0 0</pose>
+        <mass>0.82</mass>
+        <inertia>
+          <ixx>0.00116</ixx>
+          <iyy>0.00135</iyy>
+          <izz>0.00050</izz>
+          <ixy>3.58e-07</ixy>
+          <ixz>3.79e-07</ixz>
+          <iyz>4.27e-08</iyz>
+        </inertia>
+      </inertial>
+      <visual name="base_link_visual">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="base_link_collision">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- ==================== LEFT FINGER CHAIN ==================== -->
+    <!-- Link 1 Left: Active Driven Link (Stabilized mass: 0.055 kg) -->
+    <link name="link1_left">
+      <pose>0.036673 -0.00011644 0.098336 -1.5708 -0.86932 -0.0031749</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <pose>0.027954 1.3585e-10 -1.1466e-08 0 0 0</pose>
+        <mass>0.055</mass>
+        <inertia>
+          <ixx>1.07e-06</ixx>
+          <iyy>1.69e-05</iyy>
+          <izz>1.68e-05</izz>
+          <ixy>3.51e-13</ixy>
+          <ixz>-1.09e-11</ixz>
+          <iyz>-2.98e-14</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link1_left_visual">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link1_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="link1_left_collision">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link1_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Link 2 Left: Upper Crank / Gripper Tip (Stabilized mass: 0.050 kg for grasp contact) -->
+    <link name="link2_left">
+      <pose>0.0721668589 -0.0002291298 0.1403499653 -1.56970115 -0.34907265 3.13841408</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <pose>0.023452 -0.010342 0.00034961 0 0 0</pose>
+        <mass>0.050</mass>
+        <inertia>
+          <ixx>4.15e-06</ixx>
+          <iyy>4.11e-06</iyy>
+          <izz>4.12e-06</izz>
+          <ixy>7.75e-07</ixy>
+          <ixz>9.63e-11</ixz>
+          <iyz>-3.72e-09</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link2_left_visual">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link2_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="link2_left_collision">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link2_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Link 3 Left: Follower Link (Stabilized mass: 0.060 kg) -->
+    <link name="link3_left">
+      <pose>0.016 -0.000050799 0.10586 -1.5684 -0.86023 -0.0031749</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <pose>0.022966 -0.0014068 3.386e-06 0 0 0</pose>
+        <mass>0.060</mass>
+        <inertia>
+          <ixx>1.68e-05</ixx>
+          <iyy>3.58e-05</iyy>
+          <izz>1.99e-05</izz>
+          <ixy>5.82e-07</ixy>
+          <ixz>-1.40e-09</ixz>
+          <iyz>-3.83e-08</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link3_left_visual">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link3_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="link3_left_collision">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link3_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- ==================== RIGHT FINGER CHAIN ==================== -->
+    <!-- Link 1 Right: Active Follower Link (Stabilized mass: 0.055 kg) -->
+    <link name="link1_right">
+      <pose relative_to="base_link">-0.036673 0.00011644 0.098336 -1.5684 -0.84513 3.1384</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <pose>0.027954 1.3585e-10 -1.1466e-08 0 0 0</pose>
+        <mass>0.055</mass>
+        <inertia>
+          <ixx>1.07e-06</ixx>
+          <iyy>1.69e-05</iyy>
+          <izz>1.68e-05</izz>
+          <ixy>3.51e-13</ixy>
+          <ixz>-1.09e-11</ixz>
+          <iyz>-2.98e-14</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link1_right_visual">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link1_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="link1_right_collision">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link1_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Link 2 Right: Upper Crank / Gripper Tip (Stabilized mass: 0.050 kg for grasp contact) -->
+    <link name="link2_right">
+      <pose relative_to="link1_right">0.055 0 0 -3.1396 -0.0022086 -1.9474</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <pose>0.023452 -0.010342 0.00034961 0 0 0</pose>
+        <mass>0.050</mass>
+        <inertia>
+          <ixx>4.15e-06</ixx>
+          <iyy>4.11e-06</iyy>
+          <izz>4.12e-06</izz>
+          <ixy>7.75e-07</ixy>
+          <ixz>9.63e-11</ixz>
+          <iyz>-3.72e-09</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link2_right_visual">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link2_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="link2_right_collision">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link2_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Link 3 Right: Follower Link (Stabilized mass: 0.060 kg) -->
+    <link name="link3_right">
+      <pose relative_to="base_link">-0.016 5.0799e-05 0.10586 -1.5708 -0.83604 3.1384</pose>
+      <gravity>false</gravity>
+      <inertial>
+        <pose>0.022966 -0.0014068 3.386e-06 0 0 0</pose>
+        <mass>0.060</mass>
+        <inertia>
+          <ixx>1.68e-05</ixx>
+          <iyy>3.58e-05</iyy>
+          <izz>1.99e-05</izz>
+          <ixy>5.82e-07</ixy>
+          <ixz>-1.40e-09</ixz>
+          <iyz>-3.83e-08</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link3_right_visual">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link3_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="link3_right_collision">
+        <geometry>
+          <mesh>
+            <uri>model://ag165_90_4/meshes/link3_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- ==================== JOINTS CONFIGURATION ==================== -->
+    <joint name="world_to_base_link" type="fixed">
+      <parent>world</parent>
+      <child>base_link</child>
+    </joint>
+
+    <!-- Left Active Joint: Soft lower stop at -0.05 to prevent rigid hard-stop explosion -->
+    <joint name="joint1_left" type="revolute">
+      <parent>base_link</parent>
+      <child>link1_left</child>
+      <pose relative_to="base_link">0.036673 -0.00011644 0.098336 -1.5708 -0.86932 -0.0031749</pose>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-0.05</lower>
+          <upper>0.93</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.08</damping>
+          <friction>0.01</friction>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>1e-3</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+
+    <!-- Left Passive Joint 2: Full range rotation without limits -->
+    <joint name="joint2_left" type="revolute">
+      <parent>link1_left</parent>
+      <child>link2_left</child>
+      <pose relative_to="link1_left">0.055 0 0 -3.1405 0 -1.9232</pose>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.0005</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- Left Passive Joint 3: Full range rotation without limits -->
+    <joint name="joint3_left" type="revolute">
+      <parent>base_link</parent>
+      <child>link3_left</child>
+      <pose relative_to="base_link">0.016 -5.0799e-05 0.10586 -1.5684 -0.86023 -0.0031749</pose>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.0005</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- Left Closed-Loop Joint: Pin P3 Connection with soft constraint -->
+    <joint name="left_link2_to_link3_sdf" type="revolute">
+      <parent>link2_left</parent>
+      <child>link3_left</child>
+      <pose relative_to="link2_left">0.022 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.0</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <cfm>1e-4</cfm>
+          <erp>0.2</erp>
+        </ode>
+      </physics>
+    </joint>
+
+    <!-- Right Follower Joint: Matches joint1_left, includes higher damping to absorb mimic twitching -->
+    <joint name="joint1_right" type="revolute">
+      <parent>base_link</parent>
+      <child>link1_right</child>
+      <pose relative_to="base_link">-0.036673 0.00011644 0.098336 -1.5684 -0.84513 3.1384</pose>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-0.05</lower>
+          <upper>0.93</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.20</damping>
+          <friction>0.01</friction>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>1e-3</cfm>
+            <erp>0.2</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+
+    <!-- Right Passive Joint 2: Full range rotation without limits -->
+    <joint name="joint2_right" type="revolute">
+      <parent>link1_right</parent>
+      <child>link2_right</child>
+      <pose relative_to="link1_right">0.055 0 0 -3.1396 -0.0022086 -1.9474</pose>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.0005</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- Right Passive Joint 3: Full range rotation without limits -->
+    <joint name="joint3_right" type="revolute">
+      <parent>base_link</parent>
+      <child>link3_right</child>
+      <pose relative_to="base_link">-0.016 5.0799e-05 0.10586 -1.5708 -0.83604 3.1384</pose>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.0005</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- Right Closed-Loop Joint: Pin Connection with soft constraint -->
+    <joint name="right_link2_to_link3_sdf" type="revolute">
+      <parent>link2_right</parent>
+      <child>link3_right</child>
+      <pose relative_to="link2_right">0.022 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-3.14</lower>
+          <upper>3.14</upper>
+          <effort>50</effort>
+          <velocity>2.1</velocity>
+        </limit>
+        <dynamics>
+          <damping>0.0</damping>
+          <friction>0.0</friction>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <cfm>1e-3</cfm>
+          <erp>0.2</erp>
+        </ode>
+      </physics>
+    </joint>
+
+    <!-- ==================== PLUGINS CONFIGURATION ==================== -->
+    <!-- Mimic Plugin: Drives joint1_right to follow active joint1_left -->
+    <plugin name="ag165_full_gripper_mimic" filename="libag165_gripper_mimic_plugin.so">
+      <enabled>true</enabled>
+      <active_joint>joint1_left</active_joint>
+      <kp>2.5</kp>
+      <kd>0.35</kd>
+      <effort>2.5</effort>
+      <follower>
+        <name>joint1_right</name>
+        <multiplier>1.0</multiplier>
+      </follower>
+    </plugin>
+  </model>
+</sdf>

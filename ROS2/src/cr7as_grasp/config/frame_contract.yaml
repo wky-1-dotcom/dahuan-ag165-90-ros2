@@ -1,0 +1,19 @@
+# 项目坐标系与接口契约。现场测量值不可写入此模板，应保存为本地 tool_frames.yaml。
+frames:
+  reference_frame: base_link
+  flange_frame: l6
+  gripper_base_frame: gripper_base
+  tcp_frame: grasp_tcp
+
+vision:
+  input_optical_frame: virtual_camera_optical_frame
+  metric_output_frame: base_link
+  object_pose_topic: /vision/object_pose_base
+  length_unit: m
+
+motion:
+  planning_group: ARM
+  end_effector_link: grasp_tcp
+  simulation_controller_action: /arm_controller/follow_joint_trajectory
+  # Future V4 hardware reference; do not execute through it from this package.
+  hardware_controller_action: /cr7_group_controller/follow_joint_trajectory

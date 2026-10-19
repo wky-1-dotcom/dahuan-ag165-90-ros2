@@ -1,0 +1,23 @@
+# Template only. Copy to hardware.yaml for local site values; hardware.yaml is gitignored.
+hardware:
+  enabled: false
+  robot_ip: null
+  # CR7AS uses the CR7 V4 controller interface reference; verify on the real controller first.
+  vendor_robot_type: cr7
+  vendor_bringup_namespace: /dobot_bringup_ros2
+  hardware_controller_action: /cr7_group_controller/follow_joint_trajectory
+
+execution:
+  allow_execute: false
+  max_velocity_scaling: 0.05
+  max_acceleration_scaling: 0.05
+  require_controller_ik_check: true
+  require_check_odd_motion: true
+  require_operator_confirmation: true
+
+tool:
+  controller_tool_id: null
+  tool_tcp_verified: false
+  gripper_io_verified: false
+  payload_kg: null
+  center_of_mass_m: [null, null, null]

@@ -1,0 +1,18 @@
+# Template only. CR7AS project names map one-to-one to V4 CR7 names.
+# Do NOT import CR7 URDF mass/inertia/inertial values: retain cr7as_grasp model values.
+joint_name_map:
+  verified_name_mapping: true
+  source_model_joints: [j1, j2, j3, j4, j5, j6]
+  vendor_v4_cr7_joints: [joint1, joint2, joint3, joint4, joint5, joint6]
+  mapping:
+    j1: joint1
+    j2: joint2
+    j3: joint3
+    j4: joint4
+    j5: joint5
+    j6: joint6
+
+model_dynamics:
+  source: cr7as_grasp URDF and Gazebo URDF
+  official_v4_cr7_urdf_dynamics_accepted: false
+  note: Keep CR7AS mass, inertia, and inertial values unchanged for this simulation model.

@@ -1,0 +1,10 @@
+# Default initial positions for cr7as_grasp's ros2_control fake system
+
+initial_positions:
+  ag165_joint1_left: 0
+  j1: 0
+  j2: 0
+  j3: 0
+  j4: 0
+  j5: 0
+  j6: 0
