@@ -28,9 +28,13 @@ Gazebo then adds the two SDF-only `link2 ↔ link3` pin joints to restore the ph
 
 ![AG165-90 SDF closed-loop configuration](assets/images/ag165-90-sdf-closure.png)
 
-## Demonstration
+## RViz configuration motion
 
-[观看抓取演示视频（MP4）](assets/videos/grasp.mp4)。该视频用于展示当前仿真/演示结果，不替代闭环物理抓取、碰撞或真机验收。
+![AG165-90 RViz configuration and continuous joint motion preview](assets/videos/ag165-rviz-motion-preview.gif)
+
+上图是可在 GitHub README 直接播放的 GIF 预览：它展示夹爪在 RViz 中的配置、关节状态滑块和连续运动，不是抓取演示，也不代表闭环物理夹持、碰撞验证或真机验收。
+
+[下载原始 MP4（29.98 秒，含更高画质）](assets/videos/ag165-rviz-motion.mp4)。MP4 使用 Git LFS 管理，GitHub 仓库页面通常只提供下载，不会在 README 中内嵌播放。
 
 ## Important model boundary
 
