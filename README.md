@@ -52,11 +52,6 @@ git clone https://github.com/wky-1-dotcom/dahuan-ag165-90-ros2.git
 cd dahuan-ag165-90-ros2
 git lfs pull
 ```
-
-## STEP notice
-
-No AG165-90 `.stp` or `.step` source was supplied in the source folders used to create this repository. The `CAD/SolidWorks` directory intentionally preserves the original SolidWorks source instead. Add an exported AG165 STEP file later under `CAD/STEP/` when it is available.
-
 ## ROS 2 usage
 
 The current files target ROS 2 Humble with Gazebo Classic. Read `docs/Ubuntu迁移与验证.md` before building or launching, and keep generated `build/`, `install/`, and `log/` directories outside version control.
